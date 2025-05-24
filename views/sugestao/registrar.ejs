@@ -1,0 +1,24 @@
+
+<div class="container">
+  <div class="page-inner">
+    <div class="page-header d-flex justify-content-between align-items-center">
+        <h3 class="fw-bold">Registre sua Sugestão</h3>
+    </div>
+
+
+  <form method="POST" action="/sugestao/registrar" class="mt-4">
+    
+    <input type="hidden" name="pessoa_id" value="<%= pessoa.id %>">
+
+    <div class="form-group">
+      <label for="descricao">Descrição da Sugestão:</label>
+      <textarea id="descricao" name="descricao" class="form-control" rows="10" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">REGISTRAR</button>
+    </div>
+  </form>
+</div>
+  
+  

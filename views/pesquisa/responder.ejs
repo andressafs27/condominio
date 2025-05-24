@@ -1,0 +1,89 @@
+
+<div class="container">
+    <div class="page-inner">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Responder Pesquisa</div>
+            </div>
+            <div class="card-body">
+
+              <div class="row">
+                <!-- Primeira Coluna -->
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <input type="hidden" id="id" value="<%= pesquisa ? pesquisa.id : '' %>">
+                    <div class="form-group">
+                      <label class="form-group" for="titulo">Titulo</label>
+                      <input
+                        disabled
+                        type="text"
+                        class="form-control"
+                        id="titulo"
+                        value="<%= pesquisa && pesquisa.titulo ? pesquisa.titulo : '' %>"
+                        />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                      <div class="form-group">
+                        <label class="form-group" for="data">Data</label>
+                        <input
+                          disabled
+                          type="date"
+                          class="form-control"
+                          id="data"
+                          maxlength="10" 
+                          value="<%= pesquisa && pesquisa.data instanceof Date ? pesquisa.data.toISOString().split('T')[0] : '' %>"
+                        />
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+              
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group" id="container-perguntas">
+                    <label class="form-group">Perguntas da Pesquisa</label>
+                    <% if (todasPerguntas && todasPerguntas.length > 0) { %>
+                      <% todasPerguntas.forEach(function(pergunta) { %>
+                        <div class="form-group d-flex align-items-center">
+                          <input type="text" class="form-control mr-2" data-id="pergunta_id" value="<%= pergunta.enunciado %>" readonly />
+
+                          <% if (!pergunta.alternativa_respondida) { %>
+                            <button type="button" class="btn btn-success btn-sm remover-pergunta" data-id="<%= pergunta.id %>" onclick="ResponderAlternativa(this)">RESPONDER</button>
+                          
+                            <% } else { %>
+                              <button type="button" class="btn btn-info btn-sm remover-pergunta" disabled>RESPONDIDA</button>
+                            <% } %>
+                        </div>
+                      <% }) %>
+                    <% } else { %>
+                      <p>Não há perguntas associadas a esta pesquisa.</p>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+                <div class="card-action">
+                  <button class="btn btn-info" type="button" onclick="window.location.href='/pesquisa/morador/listagem'">Voltar</button>
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function ResponderAlternativa(botao){
+        let pesquisa_id = $('#id').val();
+        let pergunta_id = botao.getAttribute('data-id');
+        window.location.href = `/pesquisa/morador/${pesquisa_id}/responder/${pergunta_id}`;
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        

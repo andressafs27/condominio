@@ -1,0 +1,106 @@
+
+  
+        <!-- formulario -->
+   
+        <div class="container">
+            <div class="page-inner">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Alterar Pesquisa</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <!-- Primeira Coluna -->
+                        <div class="col-md-6">
+                          <input type="hidden" id="id" value="<%= pesquisa ? pesquisa.id : '' %>">
+
+
+                          <div class="form-group">
+                            <label for="titulo">Titulo</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="titulo"
+                              value="<%= pesquisa && pesquisa.titulo ? pesquisa.titulo : '' %>"
+                              />
+                          </div>
+
+                          <div class="form-group">
+                            <label for="data">Data</label>
+                            <input
+                              type="date"
+                              class="form-control"
+                              id="data"
+                              maxlength="10" 
+                              value="<%= pesquisa && pesquisa.data instanceof Date ? pesquisa.data.toISOString().split('T')[0] : '' %>"
+
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="data_fim">Data de encerramento</label>
+                            <input
+                              type="date"
+                              class="form-control"
+                              id="data_fim"
+                              maxlength="10" 
+                              value="<%= pesquisa && pesquisa.data_fim instanceof Date ? pesquisa.data_fim.toISOString().split('T')[0] : '' %>"
+
+                            />
+                        </div>
+  
+                  <div class="col-md-6">
+                          
+                          <div class="form-group">
+                            <label for="status">Status</label>
+                            <select name="status" class="form-control" id="status">
+                                <option value="1" <%= pesquisa.status === 1 ? 'selected' : '' %>>Ativo</option>
+                                <option value="0" <%= pesquisa.status === 0 ? 'selected' : '' %>>Inativo</option>
+                            </select>
+                          </div>
+  
+                        </div>
+  
+
+                        </div>
+
+                        
+                        
+                        
+                      </div>
+  
+                      </div>
+
+                      
+                        <!-- Perguntas Cadastradas -->
+                      <div class="form-group">
+                        <label>Perguntas</label>
+                        <div id="perguntasContainer">
+                          <% perguntas.forEach(p => { %>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="pergunta" id="pergunta<%= p.id %>" value="<%= p.id %>"  <%= p.selecionada ? 'checked': '' %>>
+                              <label class="form-check-label" for="pergunta<%= p.id %>"><%= p.enunciado %></label>
+                            </div>
+                          <% }) %>
+                        </div>
+                      </div>
+
+                      </div>
+
+                   
+
+                    <div class="card-action">
+                      <button class="btn btn-success cadastrar" id="btnAlterar" type="button">Alterar</button>
+                      <button class="btn btn-danger" type="button" onclick="window.location.href='/pesquisa/listar'">Voltar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="/js/pesquisa/alterar.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        

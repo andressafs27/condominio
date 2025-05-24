@@ -1,0 +1,117 @@
+<!-- Tela de Alteração de Veículo -->
+<div class="container">
+  <div class="page-inner">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Desabilitar Cadastro de Veículo</div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Primeira Coluna -->
+              <div class="col-md-6">
+
+                <!-- Campo Oculto com ID do Veículo -->
+                <input type="hidden" id="id" value="<%= veiculo ? veiculo.id : '' %>" />
+
+                <!-- Campo oculto para pessoa_id -->
+                <input type="hidden" id="pessoa_id" name="pessoa_id" value="<%= veiculo.pessoa_id %>">
+
+
+                <div class="form-group">
+                  <label for="nomePessoa">CPF da Pessoa:</label>
+                  <input
+                    name="cpf"
+                    type="text"
+                    id="cpf"
+                    class="form-control"
+                    value="<%= pessoa ? pessoa.cpf : '' %>"
+                    disabled
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="modelo">Modelo</label>
+                  <input
+                    type="text"
+                    class="form-control veiculo"
+                    id="modelo"
+                    placeholder="Digite o Modelo"
+                    value="<%= veiculo ? veiculo.modelo : '' %>"
+                    disabled
+                  />
+                </div>
+
+                  <div class="form-group">
+                  <label for="placa">Placa</label>
+                  <input
+                    type="text"
+                    class="form-control veiculo"
+                    id="placa"
+                    placeholder="Digite a Placa"
+                    value="<%= veiculo ? veiculo.placa : '' %>"
+                    disabled
+                  />
+                  <small id="erro-placa" class="text-danger" style="display: none;">Placa já existente</small>
+
+                </div>
+              </div>
+              <div class="col-md-6">
+
+                <div class="form-group">
+                  <label for="nomePessoa">Nome da Pessoa:</label>
+                  <input
+                    type="text"
+                    id="nomePessoa"
+                    class="form-control"
+                    value="<%= pessoa ? pessoa.nome : '' %>"
+                    disabled
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="marca">Marca</label>
+                  <input
+                    type="text"
+                    class="form-control veiculo"
+                    id="marca"
+                    placeholder="Digite a Marca"
+                    value="<%= veiculo ? veiculo.marca : '' %>"
+                    disabled
+                  />
+                </div>
+
+                
+
+                <div class="form-group">
+                  <label for="cor">Cor</label>
+                  <input
+                    type="text"
+                    class="form-control veiculo"
+                    id="cor"
+                    placeholder="Digite a Cor"
+                    value="<%= veiculo ? veiculo.cor : '' %>"
+                    disabled
+                  />
+                </div>
+
+              
+
+              </div>
+            </div>
+          </div>
+
+          <div class="card-action">
+            <button class="btn btn-success py-2" style="width: 120px; height: 40px; border-radius:5px" id="btnDesabilitar" type="button">Desabilitar</button>
+            <button class="btn btn-danger py-2" style="width: 120px; height: 40px; border-radius:5px" type="button" onclick="window.location.href='/veiculo/listar'">Voltar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script -->
+<script src="/js/veiculo/desabilitar.js"></script>

@@ -1,0 +1,83 @@
+
+  
+        <!-- formulario -->
+   
+        <div class="container">
+            <div class="page-inner">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Excluir Agendamento de Assembleia</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <!-- Primeira Coluna -->
+                        <div class="col-md-6">
+                            <input type="hidden" id="id" value="<%= assembleia ? assembleia.id : '' %>"/>
+  
+                          <div class="form-group">
+                            <label for="data_nascimento">Data</label>
+                            <input
+                              type="date"
+                              class="form-control"
+                              id="data"
+                              value="<%= assembleia && assembleia.data instanceof Date ? assembleia.data.toISOString().split('T')[0] : '' %>"
+                              disabled
+                              />
+                          </div>
+                        </div>
+                        
+                        <!-- Segunda Coluna -->
+                        <div class="col-md-6">
+                          
+                          <div class="form-group">
+                            <label for="cpf">Horário</label>
+                            <input
+                              type="time"
+                              class="form-control"
+                              id="horario"
+                              value="<%= assembleia && assembleia.horario ? assembleia.horario : '' %>"
+                              disabled
+  
+                            />
+                          </div>
+  
+                        </div>
+  
+                        <div class="row mt-3">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Pautas</label>
+                              <div id="pautasContainer">
+                                <% if (assembleia && assembleia.pautas) { %>
+                                  <% assembleia.pautas.forEach(function(pauta, index) { %>
+                                    <div class="pautas-item row mb-2">
+                                      <div class="col-md-3 col-8 mb-1">
+                                        <input type="text" class="form-control pauta" placeholder="Descrição da Pauta" required value="<%= pauta.descricao %>" disabled>
+                                      </div>
+                                      
+                                    </div>
+                                  <% }) %>
+                                <% } %>
+                              </div>                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                      </div>
+                    </div>
+                    <div class="card-action">
+                      <button class="btn btn-success cadastrar" id="btnExcluir" type="button">Excluir</button>
+                      <button class="btn btn-danger" type="button" onclick="window.location.href='/assembleia/listar'">Voltar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="/js/assembleia/excluir.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+        

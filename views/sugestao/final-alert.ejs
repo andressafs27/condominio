@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalização da Sugestão</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <script>
+        Swal.fire({
+            title: 'Sugestão Finalizada!',
+            text: 'Obrigado por fazer esta sugestão.',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+        }).then(() => {
+            window.location.href = "/sugestao/morador/listagem";
+        });
+    </script>
+</body>
+</html>

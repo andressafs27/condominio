@@ -1,0 +1,161 @@
+
+  
+        <!-- formulario -->
+   
+        <div class="container">
+          <div class="page-inner">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Cadastrar de Morador</div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <!-- Primeira Coluna -->
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="nome">Nome Completo</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="nome"
+                            placeholder="Digite o Nome Completo"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="rg">RG</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="rg"
+                            placeholder="Digite o RG"
+                            maxlength="12" 
+                            oninput="formatarRG(this)"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="telefone">Telefone</label>
+                          <input
+                            type="tel"
+                            class="form-control"
+                            id="telefone"
+                            placeholder="Digite o Telefone"
+                          />
+                        </div>
+        
+                        <div class="form-group">
+                          <label for="sindico">É Sindico?</label>
+                          <select class="form-control" id="sindico">
+                            <option value="0">Não</option>
+                            <option value="1">Sim</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="senha">Senha</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="senha"
+                            placeholder="Digite a sua senha"
+                          />
+                        </div>
+                      </div>
+                      
+                      <!-- Segunda Coluna -->
+                      <div class="col-md-6">
+                        
+                        <div class="form-group">
+                          <label for="cpf">CPF</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="cpf"
+                            placeholder="Digite o CPF"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="data_nascimento">Data de Nascimento</label>
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="data_nascimento"
+                            maxlength="10" 
+                            oninput="validarDataNascimento(this)"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="email">E-mail</label>
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            placeholder="Digite o E-mail"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="adm">É Administrador?</label>
+                          <select class="form-control" id="adm">
+                            <option value="0">Não</option>
+                            <option value="1">Sim</option>
+                          </select>
+                        </div>
+
+                      </div>
+
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Unidades do Morador</label>
+                            <div id="unidadesContainer">
+                              <div class="unidade-item row mb-2">
+                                <div class="col-md-3 col-4 mb-1">
+                                  <select class="form-control bloco-select" required>
+                                    <option value="">Bloco</option>
+                                    <% blocos.forEach(bloco => { %>
+                                      <option value="<%= bloco.id %>"><%= bloco.numero %></option>
+                                    <% }) %>
+                                  </select>
+                                </div>
+          
+                                <div class="col-md-3 col-8 mb-1">
+                                  <input type="text" class="form-control numero-unidade" placeholder="Número da Unidade" required>
+                                </div>
+          
+                              <div class="col-md-5 col-8 mb-1">
+                                  <select class="form-control tipo-vinculo" required>
+                                      <option value="1" <%= unidades.tipoVinculo == 1 ? 'selected' : '' %>>Proprietário</option>
+                                      <option value="0" <%= unidades.tipoVinculo == 0 ? 'selected' : '' %>>Responsável (Alugado)</option>
+                                  </select>
+                              </div>
+                              
+                                <div class="col-md-1 col-4 d-flex align-items-center">
+                                  <button type="button" class="btn btn-danger btn-sm remover-unidade">X</button>
+                                </div>
+                              </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary mt-2" id="btnAdicionarUnidade" style="border-radius:5px">+ Adicionar Unidade</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    </div>
+                  </div>
+                  <div class="card-action">
+                    <button class="btn btn-success cadastrar" id="btnCadastrar" type="button" style="width: 100px; height: 40px; border-radius:5px">Cadastrar</button>
+                    <button class="btn btn-danger" type="button" onclick="window.location.href='/pessoa/listar'" style="width: 100px; height: 40px;">Voltar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="/js/pessoa/cadastrar.js"></script>
+      

@@ -1,0 +1,102 @@
+
+  
+        <!-- formulario -->
+   
+        <div class="container">
+          <div class="page-inner">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Alterar Agendamento de Serviços</div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <!-- Primeira Coluna -->
+                      <div class="col-md-6">
+                          <input type="hidden" id="id" value="<%= agenda ? agenda.id : '' %>"/>
+
+                        <div class="form-group">
+                          <label for="data">Data</label>
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="data"
+                            value="<%= agenda && agenda.data instanceof Date ? agenda.data.toISOString().split('T')[0] : '' %>"
+                            />
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+
+                        <div class="form-group">
+                          <label for="data">Data Final</label>
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="data_final"
+                            value="<%= agenda && agenda.data_final instanceof Date ? agenda.data_final.toISOString().split('T')[0] : '' %>"
+                            />
+                        </div>
+                      </div>
+
+                      <!-- Segunda Coluna -->
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="descricao">Descricao</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="descricao"
+                              placeholder="Descrição do Agendamento"
+                              value="<%= agenda && agenda.descricao ? agenda.descricao : '' %>"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bloco_id">Número do Bloco</label>
+                            <select class="form-control" id="bloco_id" name="bloco_id" required>
+                              <option value="">Selecione um bloco</option>
+                              <% blocos.forEach(bloco => { %>
+                                <option value="<%= bloco.id %>" <%= agenda && agenda.bloco_id == bloco.id ? 'selected' : '' %>>
+                                  <%= bloco.numero %>
+                                </option>
+                              <% }) %>
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="servico_id">Serviço</label>
+                            <select class="form-control" id="servico_id" name="servico_id" required>
+                              <option value="">Selecione um servico</option>
+                              <% servicos.forEach(servico => { %>
+                                <option value="<%= servico.id %>" <%= agenda && agenda.servico_id == servico.id ? 'selected' : '' %>>
+                                  <%= servico.descricao %>
+                                </option>
+                              <% }) %>
+                            </select>
+                          </div>
+
+                      </div>
+
+                      
+
+
+                    </div>
+
+                    </div>
+                  </div>
+                  <div class="card-action">
+                    <button class="btn btn-success cadastrar" id="btnAlterar" type="button">Reagendar</button>
+                    <button class="btn btn-danger" type="button" onclick="window.location.href='/agenda/listar'">Voltar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="/js/agenda/alterar.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+      

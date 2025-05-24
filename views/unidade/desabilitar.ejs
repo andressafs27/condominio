@@ -1,0 +1,56 @@
+
+  
+        <!-- formulario -->
+   
+        <div class="container">
+            <div class="page-inner">
+              
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Desabilitar Unidade</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <!-- Primeira Coluna -->
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="numero">Número da Unidade</label>
+                            <input type="hidden" id="id" value="<%= unidade ? unidade.id : '' %>">
+
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="numero"
+                              value="<%= unidade ? unidade.numero : '' %>"
+                              disabled
+                            />
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="bloco_numero">Número do Bloco</label>
+  
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="bloco_numero"
+                                value="<%= unidade ? unidade.bloco_numero : '' %>"
+                                disabled
+                              />
+                            </div>
+          
+                          
+                      </div>
+                    </div>
+                    <div class="card-action">
+                      <button style="width: 120px; height: 40px; border-radius:5px" class="btn btn-success py-2 desabilitar" id="btnDesabilitar" type="button">Desativar</button>
+                      <button style="width: 120px; height: 40px; border-radius:5px" class="btn btn-danger py-2" type="button" onclick="window.location.href='/unidade/listar'">Voltar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="/js/unidade/desabilitar.js"></script>

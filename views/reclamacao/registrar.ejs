@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="page-inner">
+    <div class="page-header d-flex justify-content-between align-items-center">
+        <h3 class="fw-bold">Registre sua Reclamação</h3>
+    </div>
+
+    <form method="POST" action="/reclamacao/registrar" class="mt-4">
+
+      <div class="form-group">
+        <label for="id">Categorias</label>
+            <select class="form-control categoria-select" required name="categoria_id">
+                <option value=""></option>
+                 <% categoria.forEach(categoria => { %>
+                <option value="<%= categoria.id %>"><%= categoria.nome %></option>
+                <% }) %>
+            </select>
+      </div>
+      
+      <input type="hidden" name="pessoa_id" value="<%= pessoa.id %>">
+  
+      <div class="form-group">
+        <label for="descricao">Relato:</label>
+        <textarea id="descricao" name="descricao" class="form-control" rows="10" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">REGISTRAR</button>
+      </div>
+    </form>
+  </div>

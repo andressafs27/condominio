@@ -1,0 +1,63 @@
+
+  
+        <!-- formulario -->
+   
+        <div class="container">
+            <div class="page-inner">
+              
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Editar Unidade</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <!-- Primeira Coluna -->
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="numero">Número da Unidade</label>
+
+                            <input type="hidden" id="id" value="<%= unidade ? unidade.id : '' %>"/>
+
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="numero"
+                              value="<%= unidade ? unidade.numero : '' %>"
+                            />
+                          </div>
+
+                          <div class="form-group">
+                            <label for="bloco_numero">Número do Bloco</label>
+                            <select class="form-control" id="bloco_id" name="bloco_numero" required>
+                              <option value="">Selecione um bloco</option>
+                              <% blocos.forEach(bloco => { %>
+                                <option value="<%= bloco.id %>" <%= unidade && unidade.bloco_id == bloco.id ? 'selected' : '' %>>
+                                  <%= bloco.numero %>
+                                </option>
+                              <% }) %>
+                            </select>
+                          </div>
+                          
+
+                          
+          
+                          
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-action">
+                      <button style="width: 120px; height: 40px; border-radius:5px" class="btn btn-success py-2 alterar" id="btnAlterar" type="button">Alterar</button>
+                      <button style="width: 120px; height: 40px; border-radius:5px" class="btn btn-danger py-2" type="button" onclick="window.location.href='/unidade/listar'">Voltar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="/js/unidade/alterar.js"></script>
+
+     
+        

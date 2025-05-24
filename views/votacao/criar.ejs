@@ -1,0 +1,75 @@
+
+<!-- formulario -->
+
+<div class="container">
+    <div class="page-inner">
+        
+        <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+            <div class="card-header">
+                <div class="card-title">Criar Nova Votação</div>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                <!-- Primeira Coluna -->
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label for="data_inicio">Data de Início da Votação</label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="data_inicio"
+                          maxlength="10" 
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pauta_id">Selecione uma Pauta para Votação</label>
+                        <select name="pauta_id" id="pauta_id" class="form-control">
+                            <% pauta.forEach(p => { %>
+                                <option value="<%= p.id %>"><%= p.descricao %></option>
+                            <% }); %>
+                        </select>
+                    </div>  
+
+                </div>
+
+                <!-- Segunda Coluna -->
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label for="data_fim">Data de Fim da Votação</label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="data_fim"
+                          maxlength="10" 
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status da Votação</label>
+                        <select name="status" class="form-control" id="status">
+                            <option value="1" <%= votacao.status === 1 ? 'selected' : '' %>>Aberta</option>
+                            <option value="0" <%= votacao.status === 0 ? 'selected' : '' %>>Fechada</option>
+                        </select>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="card-action">
+                <button class="btn btn-success cadastrar" id="btnCriar" type="button">Criar</button>
+                <button class="btn btn-danger" type="button" onclick="window.location.href='/votacao/listar'">Voltar</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <script src="/js/votacao/criar.js"></script>
+     
+        

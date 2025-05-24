@@ -1,0 +1,49 @@
+
+  
+        <!-- formulario -->
+   
+        <div class="container">
+            <div class="page-inner">
+             
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Editar Bloco</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <!-- Primeira Coluna -->
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="nome">Número</label>
+                            
+                            <input type="hidden" id="id" value="<%= bloco ? bloco.id : '' %>"/>
+
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="numero"
+                              value="<%= bloco ? bloco.numero : '' %>"
+                            />
+                            <small id="erro-numero" class="text-danger" style="display: none;"></small>
+
+                          </div>
+                        </div>
+                        
+                        
+                      </div>
+                    </div>
+                    <div class="card-action">
+                      <button style="width: 120px; height: 40px; border-radius:5px" class="btn btn-success py-2 alterar" id="btnAlterar" type="button">Alterar</button>
+                      <button style="width: 120px; height: 40px; border-radius:5px" class="btn btn-danger py-2" type="button" onclick="window.location.href='/bloco/listar'">Voltar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="/js/bloco/alterar.js"></script>
+
+     
+        

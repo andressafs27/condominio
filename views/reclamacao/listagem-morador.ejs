@@ -1,0 +1,56 @@
+
+<div class="container">
+    <div class="page-inner">
+
+      <div class="page-header d-flex justify-content-between align-items-center">
+        <h3 class="fw-bold">Minhas Reclamações</h3>
+        <button class="btn btn-info" onclick="registrar()">+ Reclamação</button>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table
+                  id="basic-datatables"
+                  class="display table table-striped table-hover"
+                >
+                  <thead>
+                    <tr>
+                      <th>Data</th>
+                      <th>Descrição</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                        <% for (let i=0; i < lista.length; i++){ %>
+                        <tr>
+                            <td><%= new Date(lista[i].data).toLocaleDateString('pt-BR') %></td>
+                            <td><%= lista[i].descricao %></td>
+                            <td>
+                              <% if (lista[i].status == 0) { %>
+                                <span class="badge bg-warning text-dark">PENDENTE</span>
+                              <% } else if (lista[i].status == 1) { %>
+                                <span class="badge bg-info text-dark">EM ANÁLISE</span>
+                              <% } else if (lista[i].status == 2) { %>
+                                <span class="badge bg-success">RESOLVIDO</span>
+                              <% } %>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<script>
+  function registrar(){
+    window.location.href = '/reclamacao/registrar';
+  }
+</script>

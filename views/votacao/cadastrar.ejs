@@ -1,0 +1,97 @@
+<!-- formulário -->
+<div class="container">
+    <div class="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Votação da Pauta (<%= pauta ? pauta.id : 'ID não disponível' %>)</div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row" style="display: flex; justify-content: center;">
+                            <div class="col-md-8">
+
+                                <input type="hidden" id="pessoaId" value="<%= pessoa ? pessoa.id : '' %>"/>
+                                <input type="hidden" id="pautaId" value="<%= pauta ? pauta.id : '' %>"/>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="cpf">CPF:</label>
+                                            <input
+                                                name="cpf"
+                                                type="text"
+                                                id="cpf"
+                                                class="form-control"
+                                                value="<%= pessoa ? pessoa.cpf : '' %>"
+                                                disabled
+                                            />
+                                        </div>
+
+                                        <div class="form-group mt-2">
+                                            <label for="nomePessoa">Nome:</label>
+                                            <input
+                                                type="text"
+                                                id="nomePessoa"
+                                                class="form-control"
+                                                value="<%= pessoa ? pessoa.nome : '' %>"
+                                                disabled
+                                            />
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="descricao">Pauta</label>
+                                                    <div id="pautasContainer">
+                                                        <div class="pautas-item row mb-2">
+                                                            <div class="col-md-12 mb-1">
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control pauta"
+                                                                    id="descricao"
+                                                                    placeholder="Descrição da pauta"
+                                                                    value="<%= pauta ? pauta.descricao : '' %>"
+                                                                    disabled
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mt-3 text-center">
+                                            <label>Seu voto:</label>
+                                            <div class="d-flex justify-content-center gap-4 mt-2">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="voto" id="votoSim" value="sim">
+                                                    <label class="form-check-label" for="votoSim">Sim</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="voto" id="votoNao" value="nao">
+                                                    <label class="form-check-label" for="votoNao">Não</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-action d-flex gap-2 justify-content-center">
+                            <button class="btn btn-success py-2" style="width: 200px;" type="button" id="btnVotar" disabled>Votar</button>
+                            <button class="btn btn-danger py-2" style="width: 200px;" type="button" onclick="window.location.href='/votacao/listar'">Voltar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/voto/cadastrar.js"></script>
+

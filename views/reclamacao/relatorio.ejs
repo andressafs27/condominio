@@ -1,0 +1,108 @@
+<link rel="stylesheet" type="text/css"  media="print" href="/css/relatorio.css">
+
+<script src="/js/reclamacao/relatorio.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+
+<div class="content" style="height: 100vh;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Relatório de Reclamações</h4>
+                </div>
+                <div style="margin-bottom: 15px; margin:10px" class="no-print">
+                    <button id="btnExportarExcel" class="btn btn-success" >Exportar para Excel</button>
+                    <button id="btnExportarPdf"  onclick="window.print()" class="btn btn-danger">Imprimir</button>
+                </div>
+                
+                <div style="margin-bottom: 15px; margin:10px" id="divFiltros">
+                    <label for="filtro" class="no-print">Filtro:</label>
+                    <div class="input-group">
+                        <input id="filtro_codigo" type="text" placeholder="Digite um valor a ser filtrado..." class="form-control no-print" aria-label="Text input with dropdown button">
+                        <div class="input-group-append">
+                            
+                          
+                            
+                            <button id="btnFiltrar" class="btn btn-primary no-print" type="button"><i class="nc-icon nc-zoom-split" style="margin-right:10px"></i>Buscar</button>
+                        </div>
+
+                    </div>
+
+                    <select id="filtroSelect" class="form-control no-print">
+                            <option value="">- Selecione o filtro -</option>
+                              <option value="1" data-nome="Codigo Reclamacao">Código da Reclamação</option>
+
+                              <!-- Status -->
+                              <option value="2" data-nome="Pendente">Pendente</option>
+                              <option value="3" data-nome="Em análise">Em análise</option>
+                              <option value="4" data-nome="Resolvido">Resolvido</option>
+                              <option value="5" data-nome="Resolvido">Categoria</option>
+
+                              
+
+                              <option value="6" data-nome="Todos">Todos</option>
+                              <option value="7" data-nome="Período">Período</option>
+                            </select>
+                    
+                        <div class="row no-print" id="dateFilter" style="display: none;">
+                            <div class="col-md-3 pr-1">
+                                <div class="form-group">
+                                    <label for="startDate">Data Início</label>
+                                    <input type="date" id="startDate" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3 pr-1">   
+                                <div class="form-group">
+                                    <label for="endDate">Data Fim</label>
+                                    <input type="date" id="endDate" class="form-control">
+                                </div>
+                            </div>   
+                        </div>
+
+                        <div class="row no-print" id="categoriaFilter" style="display: none;">
+                            <div class="col-md-6 pr-1">
+                                <div class="form-group">
+                                    <label for="categorias">Categorias</label>
+                                    <!-- Categoria -->
+                                     <select id="filtroSelectCategoria" class="form-control no-print">
+                                      <option value="">
+                                        - Selecione a Categoria -
+                                      </option>
+                                    <% categorias.forEach(categoria => { %>
+                                      <option value="<%= categoria.id %>">
+                                        <%= categoria.nome %>
+                                      </option>
+                                    <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="table-responsive">
+                    <table id="tabelaReclamacoes" class="table">
+                        <thead class="text-primary">
+                            <th>ID</th>
+                            <th>DATA</th>
+                            <th>DESCRICAO</th>
+                            <th>STATUS</th>
+                            <th>CATEGORIA</th>
+                        </thead>
+                        <tbody>
+                            <% for(let i = 0; i < reclamacoes.length; i++){ %>
+                                <tr>
+                                    <td><%= reclamacoes[i].id %></td>
+                                    <td><%= reclamacoes[i].data %></td>
+                                    <td><%= reclamacoes[i].descricao %></td>
+                                    <td><%= reclamacoes[i].status %></td>
+                                    <td><%= reclamacoes[i].categoria_nome %></td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>

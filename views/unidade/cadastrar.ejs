@@ -1,0 +1,76 @@
+
+  
+        <!-- formulario -->
+   
+        <div class="container">
+            <div class="page-inner">
+             
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Cadastrar Unidades</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <!-- Primeira Coluna -->
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="numero">Número da Unidade</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="numero"
+                              placeholder="Digite o Nome do Apartamento"
+                            />
+                          </div>
+
+                          <!-- <div class="form-group">
+                            <label for="bloco_numero">Número do Bloco</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="bloco_numero"
+                              placeholder="Digite o Número do bloco"
+                            />
+                          </div>  -->
+
+                          <div class="form-group">
+                            <label for="bloco_numero">Número do Bloco</label>
+                            <select class="form-control" id="bloco_id" name="bloco_numero" required>
+                              <option value="">Selecione um bloco</option>
+                              <% blocos.forEach(bloco => { %>
+                                <option value="<%= bloco.id %>"><%= bloco.numero %></option>
+                              <% }) %>
+                            </select>
+                          </div>
+                          
+                          
+
+                          
+                          
+                          
+                          
+
+                          
+                          
+
+                          
+          
+                          
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-action">
+                      <button style="width: 120px; height: 40px; border-radius:5px" class="btn btn-success py-2 cadastrar" id="btnCadastrar" type="button">Cadastrar</button>
+                      <button style="width: 120px; height: 40px; border-radius:5px" class="btn btn-danger py-2" type="button" onclick="window.location.href='/unidade/listar'">Voltar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="/js/unidade/cadastrar.js"></script>
+     
+        

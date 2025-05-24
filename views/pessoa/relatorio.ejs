@@ -1,0 +1,83 @@
+<link rel="stylesheet" type="text/css"  media="print" href="/css/relatorio.css">
+
+<script src="/js/pessoa/relatorio.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+
+
+<div class="content d-flex flex-column" style="padding-top: 60px;">
+  <div class="row justify-content-center mt-4">
+    <div class="col-lg-10">
+      <div class="card shadow-sm">
+        <div class="card-header text-white">
+          <h3 class="card-title mb-0 text-dark">Relatório de Moradores</h3>
+        </div>
+
+        <!-- Botões Exportar e Imprimir -->
+        <div class="d-flex justify-content-end gap-2 p-3 no-print">
+          <button id="btnExportarExcel" class="btn btn-success d-flex align-items-center">
+            <i class="nc-icon nc-single-copy-04 me-2"></i> Exportar para Excel
+          </button>
+          <button id="btnExportarPdf" onclick="window.print()" class="btn btn-danger d-flex align-items-center">
+            <i class="nc-icon nc-paper me-2"></i> Imprimir
+          </button>
+        </div>
+
+        <!-- Filtros -->
+        <div class="p-3 border-top no-print">
+          <div class="row g-3 align-items-center">
+            <div class="col-md-6">
+              <label for="filtro_codigo" class="form-label fw-semibold">Filtro</label>
+              <div class="input-group">
+                <input id="filtro_codigo" type="text" placeholder="Digite um valor a ser filtrado..." class="form-control" aria-label="Filtro">
+                <button id="btnFiltrar" class="btn btn-primary" type="button">
+                  <i class="nc-icon nc-zoom-split me-1"></i> Buscar
+                </button>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="filtroSelect" class="form-label fw-semibold">Tipo de filtro</label>
+              <select id="filtroSelect" class="form-select">
+                <option value="">- Selecione o filtro -</option>
+                <option value="1" data-nome="Codigo Pessoa">Código da Pessoa</option>
+                <option value="2" data-nome="CPF Pessoa">CPF</option>
+                <option value="3" data-nome="Nome">Nome</option>
+                <option value="4" data-nome="bloco_numero">Bloco</option>
+                <option value="6" data-nome="Todos">Todos</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabela -->
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table id="tabelaPessoa" class="table table-striped table-hover mb-0">
+              <thead class="table-primary text-primary fw-semibold">
+                <tr>
+                  <th>ID</th>
+                  <th>NOME</th>
+                  <th>CPF</th>
+                  <th>BLOCO</th>
+                  <th>UNIDADE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(let i = 0; i < pessoas.length; i++){ %>
+                  <tr>
+                    <td><%= pessoas[i].id %></td>
+                    <td><%= pessoas[i].nome %></td>
+                    <td><%= pessoas[i].cpf %></td>
+                    <td><%= pessoas[i].bloco_numero %></td>
+                    <td><%= pessoas[i].unidade_numero %></td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

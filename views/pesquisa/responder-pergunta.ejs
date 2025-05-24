@@ -1,0 +1,121 @@
+
+  
+        <!-- formulario -->
+   
+        <div class="container">
+            <div class="page-inner">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Responder Pergunta</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <!-- Primeira Coluna -->
+                        <div class="col-md-6">
+                          <input type="hidden" id="pesquisa_id" value="<%= pesquisa_id %>">
+                          <input type="hidden" id="pergunta_id" value="<%= pergunta.id  %>">
+
+                          <div class="form-group">
+                            <label for="titulo">Enunciado</label>
+                            <input
+                              disabled
+                              type="text"
+                              class="form-control"
+                              id="titulo"
+                              value="<%= pergunta && pergunta.enunciado ? pergunta.enunciado : '' %>"
+                              />
+                          </div>
+
+                        </div>
+                      </div>
+                      </div>
+
+                                  <!-- Alternativas da Pergunta -->
+                        <div class="row mt-3">
+                          <div class="col-md-12">
+                            <div class="form-group" id="container-perguntas">
+                              <label>Alternativas</label>
+                              <% if (alternativas && alternativas.length > 0) { %>
+                                <% alternativas.forEach(function(alternativa) { %>
+                                  <div class="form-group d-flex align-items-center">
+                                    <input type="text" class="form-control mr-2"  value="<%= alternativa.enunciado %>" readonly />
+                                    <button type="button" class="btn btn-info btn-sm remover-pergunta" data-id="<%= alternativa.id %>" onclick='EscolherAlternativa(this)'>Escolher</button>
+                                  </div>
+                                <% }) %>
+                              <% } else { %>
+                                <p>Não há alternativas associadas a esta pergunta.</p>
+                              <% } %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="card-action">
+                      <button class="btn btn-info" type="button" onclick="Voltar()">Voltar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script>
+
+            function Voltar(){
+              window.location.href = `/pesquisa/morador/<%= pesquisa_id %>/responder`;
+            }
+
+            function EscolherAlternativa(botao){
+              let pesquisa_id = $("#pesquisa_id").val();
+              let pergunta_id = $("#pergunta_id").val();
+              let alternativa_id = botao.getAttribute('data-id');
+
+              console.log('pesquisa_id: ' + pesquisa_id);
+              console.log('pergunta_id: ' + pergunta_id);
+              console.log('alternativa_id: ' + alternativa_id);
+
+              let obj = {
+                pesquisa_id,
+                pergunta_id,
+                alternativa_id
+              }
+
+               fetch("/pesquisa/morador/responder", {
+                  method: 'POST',
+                  body: JSON.stringify(obj),
+                  headers: {
+                      "Content-Type": "application/json",
+                  }
+              })
+              .then(r => r.json())
+              .then(r => {
+                  if (r.ok) {
+                      Swal.fire({
+                          icon: 'success',
+                          title: 'Sucesso!',
+                          text: r.msg
+                      }).then(() => {
+                          window.location.href = `/pesquisa/morador/${pesquisa_id}/responder`;
+                      });
+                  } else {
+                      Swal.fire({
+                          icon: 'error',
+                          title: 'Erro ao escolher alternativa',
+                          text: r.msg
+                      });
+                  }
+              })
+              .catch(err => {
+                  console.error("Erro ao enviar requisição:", err);
+                  Swal.fire({
+                      icon: 'error',
+                      title: 'Erro inesperado',
+                      text: 'Tente novamente mais tarde.'
+                  });
+              });
+            }
+
+          </script>
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        

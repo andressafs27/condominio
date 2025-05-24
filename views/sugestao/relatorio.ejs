@@ -1,0 +1,75 @@
+<link rel="stylesheet" type="text/css"  media="print" href="/css/relatorio.css">
+
+<script src="/js/sugestao/relatorio.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+
+<div class="content" style="height: 100vh;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Relatório de Sugestões</h4>
+                </div>
+                <div style="margin-bottom: 15px; margin:10px" class="no-print">
+                    <button id="btnExportarExcel" class="btn btn-success" >Exportar para Excel</button>
+                    <button id="btnExportarPdf"  onclick="window.print()" class="btn btn-danger">Imprimir</button>
+                </div>
+                
+                <div style="margin-bottom: 15px; margin:10px" id="divFiltros">
+                    <label for="filtro" class="no-print">Filtro:</label>
+                    <div class="input-group">
+                        <input id="filtro_codigo" type="text" placeholder="Digite um valor a ser filtrado..." class="form-control no-print" aria-label="Text input with dropdown button">
+                        <div class="input-group-append">
+                            
+                            <button id="btnFiltrar" class="btn btn-primary no-print" type="button"><i class="nc-icon nc-zoom-split" style="margin-right:10px"></i>Buscar</button>
+                        </div>
+
+                    </div>
+
+                    <select id="filtroSelect" class="form-control no-print">
+                            <option value="">- Selecione o filtro -</option>
+                              <option value="1" data-nome="Codigo Reclamacao">Código da Sugestão</option>
+                              <option value="6" data-nome="Todos">Todos</option>
+                              <option value="7" data-nome="Período">Período</option>
+                            </select>
+                    
+                        <div class="row no-print" id="dateFilter" style="display: none;">
+                            <div class="col-md-3 pr-1">
+                                <div class="form-group">
+                                    <label for="startDate">Data Início</label>
+                                    <input type="date" id="startDate" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3 pr-1">   
+                                <div class="form-group">
+                                    <label for="endDate">Data Fim</label>
+                                    <input type="date" id="endDate" class="form-control">
+                                </div>
+                            </div>   
+                        </div>
+
+                       
+                </div>
+                
+                <div class="card-body">
+                    <div class="table-responsive">
+                    <table id="tabelaSugestao" class="table">
+                        <thead class="text-primary">
+                            <th>ID</th>
+                            <th>DESCRICAO</th>
+                            <th>DATA</th>
+                        </thead>
+                        <tbody>
+                            <% for(let i = 0; i < sugestoes.length; i++){ %>
+                                <tr>
+                                    <td><%= sugestoes[i].id %></td>
+                                    <td><%= sugestoes[i].descricao %></td>
+                                    <td><%= sugestoes[i].data %></td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>

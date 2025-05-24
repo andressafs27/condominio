@@ -1,0 +1,130 @@
+
+
+<!-- formulario -->
+
+<div class="container">
+    <div class="page-inner">
+      <input type="hidden" id="id" value="<%= reclamacao ? reclamacao.id : '' %>">
+
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Reclamação</div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <!-- Primeira Coluna -->
+                 
+                <div class="col-md-8">
+                    <div class="form-group">
+                      <label for="pesquisa_id" >Nome do Morador</label>
+                      <input
+                        id="pessoa_id"
+                        type="text"
+                        class="form-control"
+                        value="<%= pessoa ? pessoa.nome: '' %>"
+                        disabled
+    
+                        />
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="data" >Data</label>
+                    <input
+                      id="data"
+                      type="date"
+                      class="form-control"
+                      value="<%= reclamacao && reclamacao.data instanceof Date ? reclamacao.data.toISOString().split('T')[0] : '' %>"
+                      disabled
+  
+                      />
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label for="descricao">Reclamação</label>
+  
+                    <textarea
+                      name="descricao"
+                      class="form-control"
+                      id="descricao"
+                      disabled
+                    ><%= reclamacao ? reclamacao.descricao : '' %></textarea>
+  
+                  </div>
+                </div>
+  
+                
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="categoria_id" >Categoria</label>
+                      <input
+                        id="categoria_id"
+                        type="text"
+                        class="form-control"
+                        value="<%= categoria ? categoria.nome: '' %>"
+                        disabled
+    
+                        />
+                    </div>
+                </div>
+
+                
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="categoria_id" >Penalidade</label>
+                      <input
+                        id="categoria_id"
+                        type="text"
+                        class="form-control"
+                        value="<%= categoria ? categoria.penalidade: '' %>"
+                        disabled
+    
+                        />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="categoria_id" >Multa</label>
+                      <input
+                        id="categoria_id"
+                        type="text"
+                        class="form-control"
+                        value="<%= categoria ? categoria.multa: '' %>"
+                        disabled
+    
+                        />
+                    </div>
+                </div>
+  
+<div class="col-md-6">
+                    <div class="form-group">
+                      <label for="status" >Alterar Status:</label>
+                      <select class="form-control" id="status">
+                        <option value="0" <%= reclamacao && reclamacao.status == '0' ? 'selected' : '' %>>Pendente</option>
+                        <option value="1" <%= reclamacao && reclamacao.status == '1' ? 'selected' : '' %>>Em Análise</option>
+                        <option value="2" <%= reclamacao && reclamacao.status == '2' ? 'selected' : '' %>>Resolvido</option>
+                      </select>
+                    </div>
+                </div>
+
+            </div>
+              <div class="card-action">
+                <button style="width: 150px; height: 40px; border-radius:5px" class="btn btn-success py-2 alterar" id="btnAlterar" type="button">Alterar Status</button>
+                <button style="width: 120px; height: 40px; border-radius:5px" class="btn btn-danger py-2" type="button" onclick="window.location.href='/reclamacao/listar'">Voltar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/reclamacao/alterar.js"></script>

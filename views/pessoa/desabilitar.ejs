@@ -1,0 +1,219 @@
+
+  
+        <!-- formulario -->
+   
+<div class="container">
+  <div class="page-inner">
+    
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Desabilitar Cadastro de Morador</div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Primeira Coluna -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="nome">Nome Completo</label>
+
+                  <input type="hidden" id="id" value="<%= pessoa ? pessoa.id : '' %>"/>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nome"
+                    value="<%= pessoa ? pessoa.nome : '' %>"
+                    disabled
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="rg" >RG</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="rg"
+                    value="<%= pessoa ? pessoa.rg : '' %>"
+                    disabled
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="telefone">Telefone</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="telefone"
+                    value="<%= pessoa ? pessoa.telefone : '' %>"
+                    disabled
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="sindico">É Síndico?</label>
+                      <select class="form-control" id="sindico" disabled>
+                        <option value="0" <%= pessoa && pessoa.sindico == 0 ? 'selected' : '' %>>Não</option>
+                        <option value="1" <%= pessoa && pessoa.sindico == 1 ? 'selected' : '' %>>Sim</option>
+                      </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="senha">Senha</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="senha"
+                    placeholder="Digite a sua senha"
+                    value="<% pessoa ? pessoa.senha : '' %>"
+                    disabled
+                  />
+                </div>
+
+
+  
+              </div>
+              
+              <!-- Segunda Coluna -->
+              <div class="col-md-6">
+
+                <div class="form-group">
+                  <label for="cpf">CPF</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cpf"
+                    value="<%= pessoa ? pessoa.cpf : '' %>"
+                    disabled
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="data_nascimento" >Data de Nascimento</label>
+                  <input
+                    id="data_nascimento"
+                    type="date"
+                    class="form-control"
+                    value="<%= pessoa && pessoa.data_nascimento instanceof Date ? pessoa.data_nascimento.toISOString().split('T')[0] : '' %>"
+                    disabled
+                    />
+                </div>
+
+                <div class="form-group">
+                  <label for="email" >E-mail</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    value="<%= pessoa ? pessoa.email : '' %>"
+                    disabled
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="adm">É Administrador?</label>
+                      <select class="form-control" id="adm" disabled>
+                        <option value="0" <%= pessoa && pessoa.adm == 0 ? 'selected' : '' %>>Não</option>
+                        <option value="1" <%= pessoa && pessoa.adm == 1 ? 'selected' : '' %>>Sim</option>
+                      </select>
+                </div> 
+
+                
+              </div>
+
+              <!-- unidades -->
+              <div class="row mt-3">
+                <div class="col-md-12">
+
+                  <div class="form-group">
+                    <label style="margin-bottom: 20px;">Apartamentos do Morador</label>
+
+                    <div id="unidadesContainer">
+                      <% if (pessoa && pessoa.unidades && pessoa.unidades.length > 0) { %>
+                        <% pessoa.unidades.forEach((unidade, index) => { %>
+                          <div class="unidade-item row mb-2">
+                    
+                            <div class="col-md-3 col-4 mb-1">
+                              <label for="bloco">Bloco</label>
+                              <select class="form-control bloco-select" disabled>
+                                <option value="">Bloco</option>
+                                <% blocos.forEach(bloco => { %>
+                                  <option value="<%= bloco.id %>" <%= unidade.bloco_id == bloco.id ? 'selected' : '' %>>
+                                    <%= bloco.numero %>
+                                  </option>
+                                <% }) %>
+                              </select>
+                            </div>
+                    
+                            <div class="col-md-3 col-8 mb-1">
+                              <label for="numero-unidade">Número do Apartamento</label>
+                              <input
+                                type="text"
+                                class="form-control numero-unidade"
+                                placeholder="Número da Unidade"
+                                value="<%= unidade.unidade_numero %>"
+                                disabled
+                              >
+                            </div>
+                    
+                            <div class="col-md-5 col-8 mb-1">
+                              <label for="tipo-vinculo">Proprietário/Responsável</label>
+                              <select class="form-control tipo-vinculo" disabled>
+                                  <option value="1" <%= unidades.tipoVinculo == 1 ? 'selected' : '' %>>Proprietário</option>
+                                  <option value="0" <%= unidades.tipoVinculo == 0 ? 'selected' : '' %>>Responsável (Alugado)</option>
+                              </select>
+                          </div>
+                    
+                            <div class="col-md-1 col-4 d-flex align-items-center">
+                              <button type="button" class="btn btn-danger btn-sm remover-unidade">X</button>
+                            </div>
+                    
+                          </div>
+                        <% }) %>
+                      <% } else { %>
+                        <!-- Exibe pelo menos um campo vazio se não houver unidades -->
+                        <div class="unidade-item row mb-2">
+                          <div class="col-md-3 col-4 mb-1">
+                            <select class="form-control bloco-select" disabled>
+                              <option value="">Bloco</option>
+                              <% blocos.forEach(bloco => { %>
+                                <option value="<%= bloco.id %>"><%= bloco.numero %></option>
+                              <% }) %>
+                            </select>
+                          </div>
+                    
+                          <div class="col-md-3 col-8 mb-1">
+                            <input type="text" class="form-control numero-unidade" placeholder="Número da Unidade" required>
+                          </div>
+                    
+                          <div class="col-md-5 col-8 mb-1">
+                            <select class="form-control tipo-vinculo" disabled>
+                              <option value="1" <%= unidades.tipoVinculo == 1 ? 'selected' : '' %>>Proprietário</option>
+                              <option value="0" <%= unidades.tipoVinculo == 0 ? 'selected' : '' %>>Responsável (Alugado)</option>
+                            </select>
+                          </div>
+                        </div>
+                      <% } %>
+                    </div>
+          
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="card-action">
+            <button class="btn btn-success alterar" id="btnDesabilitar" type="button" style="width: 120px; height: 40px;">Desabilitar</button>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='/pessoa/listar'" style="width: 100px; height: 40px;">Voltar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/pessoa/desabilitar.js"></script>
+
+   
+      

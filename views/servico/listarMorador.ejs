@@ -1,0 +1,43 @@
+
+  
+        <div class="container">
+          <div class="page-inner">
+            <div class="page-header d-flex justify-content-between align-items-center">
+              <h3 class="fw-bold">Serviços</h3>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table
+                        id="basic-datatables"
+                        class="display table table-striped table-hover"
+                      >
+                        <thead>
+                          <tr>
+                            <th >Descrição</th>
+                            <th >Data de Início</th>
+                            <th >Data de Finalização</th>
+                            <th >Serviço</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+			                      <% for (let i=0; i < lista.length; i++){ %>
+                            <tr>
+                              <td><%= lista[i].descricao %></td>
+                              <td><%= lista[i].data %></td>
+                              <td><%= lista[i].data_final %></td>
+                              <td><%= lista[i].servico_descricao %></td>
+                            </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
