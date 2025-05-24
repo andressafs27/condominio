@@ -1,0 +1,68 @@
+# Dependências do Node
+node_modules/
+.pnp/
+.pnp.js
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Variáveis de Ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Builds e Bundles
+build/
+dist/
+.next/ # Para projetos Next.js
+out/   # Para projetos Next.js
+.nuxt/ # Para projetos Nuxt.js
+.vuepress/dist # Para VuePress
+.parcel-cache/ # Para Parcel
+.webpack/ # Para Webpack
+.cache/
+public/build/ # Se você tiver uma pasta de build dentro de public
+
+# Diretórios de Módulos Temporários/Otimizados
+tmp/
+temp/
+# Alguns frameworks/bibliotecas podem gerar pastas de cache otimizadas
+.expo/ # Para Expo (React Native)
+.cache/
+.eslintcache # Para ESLint
+.prettierignore # Se você usa Prettier e quer ignorar arquivos específicos no controle de versão
+.yarn/
+.yarnrc
+
+# Testes
+/coverage/
+
+# IDEs e Ferramentas
+.vscode/ # Configurações do VS Code (opcional, mas geralmente é bom ignorar)
+.idea/   # Configurações do IntelliJ/WebStorm
+*.iml    # Arquivos de projeto do IntelliJ
+.DS_Store # Arquivos de metadados do macOS
+Thumbs.db # Arquivos de cache de miniaturas do Windows
+
+# Arquivos de Sistema Operacional
+*.swp    # Arquivos de swap do Vim
+*.swo    # Arquivos de swap do Vim
+*~       # Backups de arquivos de texto
+
+# Arquivos de Teste Temporários (se gerados)
+*.log
+*.sqlite
+*.sqlite3
+
+# Arquivos de pacotes npm
+package-lock.json # Se você usa npm, é geralmente bom ignorar e confiar no yarn.lock se ambos existirem (raro, mas pode acontecer)
+yarn.lock         # Se você usa yarn, é geralmente bom ignorar e confiar no package-lock.json (raro)
+# Se você só usa um gerenciador de pacotes, versionar o respectivo lock file é recomendado.
+# Se você usa npm, versionar package-lock.json.
+# Se você usa yarn, versionar yarn.lock.
+# Se você não tem certeza, versionar ambos é seguro, mas um deles pode ser redundante.
